@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Smart File Organizer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">📁</span>
+                <h1>AI Smart File Organizer</h1>
+            </div>
+            <p class="subtitle">Upload or drop your files to automatically categorize, rename, and generate smart summaries using AI.</p>
+        </header>
+
+        <main>
+            <!-- Drop Zone Area -->
+            <section class="upload-section">
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-icon">📤</div>
+                    <h3>Drag & Drop your file here</h3>
+                    <p>Supports PDF, DOCX, TXT, Images, and code files</p>
+                    <span class="or-divider">OR</span>
+                    <label for="fileInput" class="browse-btn">Browse File</label>
+                    <input type="file" id="fileInput" hidden>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div class="loader-container" id="loaderContainer" style="display: none;">
+                <div class="spinner"></div>
+                <p id="loaderStatus">Analyzing file with AI...</p>
+            </div>
+
+            <!-- AI Output Card -->
+            <section class="result-section" id="resultSection" style="display: none;">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h2>Organization Details</h2>
+                        <span class="badge" id="priorityBadge">Medium</span>
+                    </div>
+
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <label>Original Name</label>
+                            <p id="originalName">-</p>
+                        </div>
+                        <div class="detail-item highlight">
+                            <label>Recommended Clean Name</label>
+                            <p id="suggestedName">-</p>
+                        </div>
+                        <div class="detail-item highlight">
+                            <label>Target Category / Folder</label>
+                            <p id="categoryResult">-</p>
+                        </div>
+                    </div>
+
+                    <div class="summary-box">
+                        <label>AI Summary</label>
+                        <p id="summaryResult">-</p>
+                    </div>
+
+                    <div class="tags-box">
+                        <label>Smart Tags</label>
+                        <div class="tag-list" id="tagList"></div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="action-btn download-btn" id="downloadBtn">📥 Download Renamed File</button>
+                        <button class="action-btn secondary-btn" id="resetBtn">Organize Another File</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity History Section -->
+            <section class="history-section" id="historySection">
+                <div class="history-header">
+                    <h3>🕒 Recent Organized Files</h3>
+                    <button class="clear-history-btn" id="clearHistoryBtn">Clear History</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <p class="empty-history">No files organized yet.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
