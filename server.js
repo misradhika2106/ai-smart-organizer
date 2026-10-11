@@ -66,12 +66,12 @@ Please classify and organize this file by returning ONLY a valid JSON object (no
 
         let rawReply = data.choices[0].message.content.trim();
 
-        // Agar response markdown code fences (```json ... ```) ke sath aaye toh clean karein
-        if (rawReply.startsWith('```')) {
-            rawReply = rawReply.replace(/^```[a-zA-Z]*\n?/, '').replace(/\n?```$/, '').trim();
-        }
-
-        const parsedAnalysis = JSON.parse(rawReply);
+       // Response se sirf valid JSON block extract karein
+    const jsonMatch = rawReply.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      throw new Error("No valid JSON found in model output");
+    }
+    const parsedAnalysis = JSON.parse(jsonMatch[0]);
 
         return res.json({
             success: true,
